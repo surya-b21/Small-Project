@@ -9,7 +9,7 @@ static Scanner input = new Scanner(System.in);
 		String[] pin = { "1234", "4321" };
 		int [] saldo = { 5000000, 10000000 };
 		int [] code = new int [5];
-
+//comment
 		System.out.println("Silahkan Masukkan ID dan Pin anda!");
 		System.out.print("ID : ");
 		ID = input.next();
