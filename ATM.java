@@ -6,12 +6,14 @@ public class ATM {
 		String ID;
 		String PIN;
 		// database
-		String[] user = { "Joni", "Jono" };
-		String[] id = { "joni69", "jonoganteng"};
-		String[] pin = { "1234", "4321" };
-		String[] norek = { "00001" , "00002" };
-		int[] saldo = { 5000000, 10000000 };
-		int[] code = new int[5];
+		String [] user     = { "Joni", "Jono" };
+		String [] id       = { "joni69", "jonoganteng"};
+		String [] pin      = { "1234", "4321" };
+		String [] norek    = { "00001" , "00002" };
+		int    [] saldo    = { 5000000, 10000000 };
+		int    [] code     = new int[5];
+		int     i          = 0;
+		boolean logincheck = false;
 		boolean exitstatus = false;
 		System.out.println("================");
 		System.out.println("==Cardless ATM==");
@@ -23,9 +25,14 @@ public class ATM {
 			ID = input.next();
 			System.out.print("Password : ");
 			PIN = input.next();
-			for (int i = 0; i < id.length; i++) { //pengecekan ID dan PIN melalui for dan di cek di database
+			for (i = 0; i < id.length; i++) { //pengecekan ID dan PIN melalui for dan di cek di database
 				if ((ID.equals(id[i])) && (PIN.equals(pin[i]))) {
-					System.out.println("======================================");
+					logincheck = true;
+					break;
+				}
+			}
+			if (logincheck == true) {
+				System.out.println("======================================");
 					System.out.println("Berhasil Login!!!");
 					System.out.println("Selamat datang " + user[i]);
 					System.out.println("Silahkan pilih menu yang diinginkan");
@@ -33,11 +40,11 @@ public class ATM {
 					System.out.print("1. Info Saldo \n2. Tarik Tunai \n3. Transfer \nSilahkan Pilih Menu : ");
 					int menu = input.nextInt();
 					switch (menu) {
-					case 1:
+					case 1: 
 						System.out.println("======================================");
 						System.out.println("Saldo anda adalah Rp. " + saldo[i]);
 						break;
-					case 2:
+					case 2: 
 						System.out.println("======================================");
 						System.out.println("Pilih jumlah paket tunai :");
 						System.out.println(
@@ -79,27 +86,25 @@ public class ATM {
 						System.out.println();
 						System.out.println("======================================");
 						break;
-					case 3:
+					case 3: 
 						System.out.println("======================================");
 						System.out.println("Silahkan isi nomor rekening tujuan anda!");
 						String rek = input.next();
-						int j=0;
+						int    j   = 0;
 						for (j = 0;j < norek.length; j++) {
 							if (rek.equals(norek[j])){
-								int [] saldobaru = transfer(saldo, i, j, user, norek);
-								saldo[i] = saldobaru[0];
-								saldo[j] = saldobaru[1];
+								int   [] saldobaru = transfer(saldo, i, j, user, norek);
+								saldo[i]           = saldobaru[0];
+								saldo[j]           = saldobaru[1];
 								System.out.println("Sisa saldo anda : Rp. "+saldo[i]);
 							}
 						}
 						break;
-					} break;
-				}
-				else {
+					}
+				} else {
 					System.out.println("ID/PIN anda salah");
 				}
-			}
-			System.out.println("Apakah anda ingin melakukan tansaksi lagi ?");
+					System.out.println("Apakah anda ingin melakukan tansaksi lagi ?");
 					System.out.println("Ya/Tidak");
 					String lagi = input.next();
 					if ((lagi.equals("Ya"))||(lagi.equals("ya"))) {
@@ -107,9 +112,11 @@ public class ATM {
 					} else if ((lagi.equals("Tidak"))||(lagi.equals("tidak"))) {
 						System.out.println("Terima kasih");
 						exitstatus = true;
-					}
+					}		
+			}
 		}
-	}
+	
+		
 
 	public static int tariktunai(int saldo[], int pilih, int i) {
 		int saldoakhir = saldo[i];
@@ -135,8 +142,8 @@ public class ATM {
 	}
 
 	public static int[] transfer(int saldo[], int i, int j, String user[], String[] norek) {
-		int [] saldobaru = new int [2];
-		boolean exit = false;
+		int     [] saldobaru = new int [2];
+		boolean exit         = false;
 		while (exit == false) {
 			System.out.println("Silahkan masukkan nominal yang akan ditransfer");
 			int nominal = input.nextInt();
