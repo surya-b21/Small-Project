@@ -92,7 +92,9 @@ public class ATM {
 						String rek = input.next();
 						int    j   = 0;
 						for (j = 0;j < norek.length; j++) {
-							if (rek.equals(norek[j])){
+							if (j == i) {
+								System.out.println("Tidak bisa mentransfer ke rekening sendiri");
+							} else if (rek.equals(norek[j])){
 								int   [] saldobaru = transfer(saldo, i, j, user, norek);
 								saldo[i]           = saldobaru[0];
 								saldo[j]           = saldobaru[1];
