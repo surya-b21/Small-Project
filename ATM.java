@@ -1,6 +1,7 @@
 import java.util.*;
 public class ATM {
 	static Scanner input = new Scanner(System.in);
+	static int    [] code     = new int[5];
 
 	public static void main(String[] args) {
 		String ID;
@@ -11,7 +12,6 @@ public class ATM {
 		String [] pin      = { "1234", "4321" };
 		String [] norek    = { "00001" , "00002" };
 		int    [] saldo    = { 5000000, 10000000 };
-		int    [] code     = new int[5];
 		int     i          = 0;
 		boolean logincheck = false;
 		boolean exitstatus = false;
@@ -52,39 +52,35 @@ public class ATM {
 						System.out.print("Pilih menu : ");
 						int pilih = input.nextInt();
 						if (pilih == 1) {
-							saldo[i] = tariktunai(saldo, pilih, i);
 							System.out.println("======================================");
+							saldo[i] = tariktunai(saldo, pilih, i);
 							System.out.println("Saldo anda sekarang : Rp. " + saldo[i]);
 						} else if (pilih == 2) {
-							saldo[i] = tariktunai(saldo, pilih, i);
 							System.out.println("======================================");
+							saldo[i] = tariktunai(saldo, pilih, i);
+							System.out.println();
 							System.out.println("Saldo anda sekarang : Rp. " + saldo[i]);
 						} else if (pilih == 3) {
-							saldo[i] = tariktunai(saldo, pilih, i);
 							System.out.println("======================================");
+							System.out.println();
+							saldo[i] = tariktunai(saldo, pilih, i);
 							System.out.println("Saldo anda sekarang : Rp. " + saldo[i]);
 						} else if (pilih == 4) {
-							saldo[i] = tariktunai(saldo, pilih, i);
 							System.out.println("======================================");
+							saldo[i] = tariktunai(saldo, pilih, i);
+							System.out.println();
 							System.out.println("Saldo anda sekarang : Rp. " + saldo[i]);
 						} else if (pilih == 5) {
-							saldo[i] = tariktunai(saldo, pilih, i);
 							System.out.println("======================================");
+							saldo[i] = tariktunai(saldo, pilih, i);
+							System.out.println();
 							System.out.println("Saldo anda sekarang : Rp. " + saldo[i]);
 						} else if (pilih == 6) {
-							saldo[i] = tariktunai(saldo, pilih, i);
 							System.out.println("======================================");
+							saldo[i] = tariktunai(saldo, pilih, i);
+							System.out.println();
 							System.out.println("Saldo anda sekarang : Rp. " + saldo[i]);
 						}
-						for (int j = 0; j < code.length; j++) {
-							code[j] = (int) ((Math.random() * 8) + 1);
-						}
-						System.out.print("Kode pengambilan anda : ");
-						for (int x : code) {
-							System.out.print(x);
-						}
-						System.out.println();
-						System.out.println("======================================");
 						break;
 					case 3: 
 						System.out.println("======================================");
@@ -106,6 +102,7 @@ public class ATM {
 				} else {
 					System.out.println("ID/PIN anda salah");
 				}
+					System.out.println("===========================================");
 					System.out.println("Apakah anda ingin melakukan tansaksi lagi ?");
 					System.out.println("Ya/Tidak");
 					String lagi = input.next();
@@ -122,23 +119,70 @@ public class ATM {
 
 	public static int tariktunai(int saldo[], int pilih, int i) {
 		int saldoakhir = saldo[i];
-		if (pilih == 1) {
+		if (pilih == 1 && saldoakhir <= 50000) {
+			for (int j = 0; j < code.length; j++) {
+				code[j] = (int) ((Math.random() * 8) + 1);
+			}
+			System.out.print("Kode pengambilan anda : ");
+			for (int x : code) {
+				System.out.print(x);
+			}
 			 saldoakhir -= 50000;
-		} else if (pilih == 2) {
+		} else if (pilih == 2 && saldoakhir <= 100000) {
+			for (int j = 0; j < code.length; j++) {
+				code[j] = (int) ((Math.random() * 8) + 1);
+			}
+			System.out.print("Kode pengambilan anda : ");
+			for (int x : code) {
+				System.out.print(x);
+			}
 			 saldoakhir -= 100000;
-		} else if (pilih == 3) {
+		} else if (pilih == 3 && saldoakhir <= 300000) {
+			for (int j = 0; j < code.length; j++) {
+				code[j] = (int) ((Math.random() * 8) + 1);
+			}
+			System.out.print("Kode pengambilan anda : ");
+			for (int x : code) {
+				System.out.print(x);
+			}
 			 saldoakhir -= 300000;
-		} else if (pilih == 4) {
+		} else if (pilih == 4 && saldoakhir <= 500000) {
+			for (int j = 0; j < code.length; j++) {
+				code[j] = (int) ((Math.random() * 8) + 1);
+			}
+			System.out.print("Kode pengambilan anda : ");
+			for (int x : code) {
+				System.out.print(x);
+			}
 			 saldoakhir -= 500000;
-		} else if (pilih == 5) {
+		} else if (pilih == 5 && saldoakhir <= 1000000) {
+			for (int j = 0; j < code.length; j++) {
+				code[j] = (int) ((Math.random() * 8) + 1);
+			}
+			System.out.print("Kode pengambilan anda : ");
+			for (int x : code) {
+				System.out.print(x);
+			}
 			 saldoakhir -= 1000000;
 		} else if (pilih == 6) {
+			System.out.println("Maksimal pengambilan Rp. 1500000");
 			System.out.print("Silahkan masukkan nominal yang diinginkan : ");
 			int nominal = input.nextInt();
-			if (nominal > saldoakhir) {
-				System.out.println("Maaf saldo anda tidak mencukupi");
+			if (nominal > 1500000) {
+				System.out.println("Tidak bisa mengambil sebanyak "+nominal);
 			}
-			 saldoakhir -= nominal;
+			else if (nominal <= saldoakhir) {
+				for (int j = 0; j < code.length; j++) {
+					code[j] = (int) ((Math.random() * 8) + 1);
+				}
+				System.out.print("Kode pengambilan anda : ");
+				for (int x : code) {
+					System.out.print(x);
+				}
+				saldoakhir -= nominal;
+			} else 
+			  System.out.println("Saldo anda tidak mencukupi");
+			 
 		}
 		return saldoakhir;
 	}
